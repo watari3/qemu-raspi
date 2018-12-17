@@ -1,0 +1,60 @@
+diff -cwrp -x .git linux4.14.79pure/arch/arm/Kconfig linux/arch/arm/Kconfig
+*** linux4.14.79pure/arch/arm/Kconfig	2018-12-17 16:49:42.533613831 +0900
+--- linux/arch/arm/Kconfig	2018-12-17 16:51:57.552903133 +0900
+*************** config ARCH_MULTI_V5
+*** 670,676 ****
+  	select ARCH_MULTI_V4_V5
+  	select CPU_ARM926T if !(CPU_ARM946E || CPU_ARM1020 || \
+  		CPU_ARM1020E || CPU_ARM1022 || CPU_ARM1026 || \
+! 		CPU_XSCALE || CPU_XSC3 || CPU_MOHAWK || CPU_FEROCEON)
+  
+  config ARCH_MULTI_V4_V5
+  	bool
+--- 670,676 ----
+  	select ARCH_MULTI_V4_V5
+  	select CPU_ARM926T if !(CPU_ARM946E || CPU_ARM1020 || \
+  		CPU_ARM1020E || CPU_ARM1022 || CPU_ARM1026 || \
+! 		CPU_XSCALE || CPU_XSC3 || CPU_MOHAWK || CPU_FEROCEON || CPU_V6)
+  
+  config ARCH_MULTI_V4_V5
+  	bool
+diff -cwrp -x .git linux4.14.79pure/arch/arm/mach-versatile/Kconfig linux/arch/arm/mach-versatile/Kconfig
+*** linux4.14.79pure/arch/arm/mach-versatile/Kconfig	2018-12-17 16:49:42.537613810 +0900
+--- linux/arch/arm/mach-versatile/Kconfig	2018-12-17 16:51:20.853091888 +0900
+*************** config ARCH_VERSATILE
+*** 7,13 ****
+  	select ARM_VIC
+  	select CLKSRC_VERSATILE
+  	select COMMON_CLK_VERSATILE
+! 	select CPU_ARM926T
+  	select ICST
+  	select MFD_SYSCON
+  	select PLAT_VERSATILE
+--- 7,13 ----
+  	select ARM_VIC
+  	select CLKSRC_VERSATILE
+  	select COMMON_CLK_VERSATILE
+! 	select CPU_V6
+  	select ICST
+  	select MFD_SYSCON
+  	select PLAT_VERSATILE
+diff -cwrp -x .git linux4.14.79pure/drivers/mmc/host/Kconfig linux/drivers/mmc/host/Kconfig
+*** linux4.14.79pure/drivers/mmc/host/Kconfig	2018-12-17 16:49:42.561613679 +0900
+--- linux/drivers/mmc/host/Kconfig	2018-12-17 16:51:11.205142026 +0900
+*************** comment "MMC/SD/SDIO Host Controller Dri
+*** 6,12 ****
+  
+  config MMC_BCM2835_MMC
+  	tristate "MMC support on BCM2835"
+! 	depends on MACH_BCM2708 || MACH_BCM2709 || ARCH_BCM2835
+  	help
+  	  This selects the MMC Interface on BCM2835.
+  
+--- 6,12 ----
+  
+  config MMC_BCM2835_MMC
+  	tristate "MMC support on BCM2835"
+! 	depends on MACH_BCM2708 || MACH_BCM2709 || ARCH_BCM2835 || ARCH_VERSATILE
+  	help
+  	  This selects the MMC Interface on BCM2835.
+  
