@@ -1,0 +1,60 @@
+diff -cwrp -x .git /home/yutaka/linux.pure/arch/arm/Kconfig linux/arch/arm/Kconfig
+*** /home/yutaka/linux.pure/arch/arm/Kconfig	2018-12-17 22:50:23.041434738 +0900
+--- linux/arch/arm/Kconfig	2018-12-18 15:44:01.629369373 +0900
+*************** config ARCH_MULTI_V5
+*** 670,676 ****
+  	select ARCH_MULTI_V4_V5
+  	select CPU_ARM926T if !(CPU_ARM946E || CPU_ARM1020 || \
+  		CPU_ARM1020E || CPU_ARM1022 || CPU_ARM1026 || \
+! 		CPU_XSCALE || CPU_XSC3 || CPU_MOHAWK || CPU_FEROCEON)
+  
+  config ARCH_MULTI_V4_V5
+  	bool
+--- 670,676 ----
+  	select ARCH_MULTI_V4_V5
+  	select CPU_ARM926T if !(CPU_ARM946E || CPU_ARM1020 || \
+  		CPU_ARM1020E || CPU_ARM1022 || CPU_ARM1026 || \
+! 		CPU_XSCALE || CPU_XSC3 || CPU_MOHAWK || CPU_FEROCEON || CPU_V6)
+  
+  config ARCH_MULTI_V4_V5
+  	bool
+diff -cwrp -x .git /home/yutaka/linux.pure/arch/arm/mach-versatile/Kconfig linux/arch/arm/mach-versatile/Kconfig
+*** /home/yutaka/linux.pure/arch/arm/mach-versatile/Kconfig	2018-12-17 22:50:23.205434460 +0900
+--- linux/arch/arm/mach-versatile/Kconfig	2018-12-18 15:44:22.277208370 +0900
+*************** config ARCH_VERSATILE
+*** 7,13 ****
+  	select ARM_VIC
+  	select CLKSRC_VERSATILE
+  	select COMMON_CLK_VERSATILE
+! 	select CPU_ARM926T
+  	select ICST
+  	select MFD_SYSCON
+  	select PLAT_VERSATILE
+--- 7,13 ----
+  	select ARM_VIC
+  	select CLKSRC_VERSATILE
+  	select COMMON_CLK_VERSATILE
+! 	select CPU_V6
+  	select ICST
+  	select MFD_SYSCON
+  	select PLAT_VERSATILE
+diff -cwrp -x .git /home/yutaka/linux.pure/drivers/mmc/host/Kconfig linux/drivers/mmc/host/Kconfig
+*** /home/yutaka/linux.pure/drivers/mmc/host/Kconfig	2018-12-18 15:10:01.466896601 +0900
+--- linux/drivers/mmc/host/Kconfig	2018-12-18 15:48:31.883736124 +0900
+*************** config MMC_TOSHIBA_PCI
+*** 850,856 ****
+  
+  config MMC_BCM2835
+  	tristate "Broadcom BCM2835 SDHOST MMC Controller support"
+! 	depends on ARCH_BCM2835 || COMPILE_TEST
+  	depends on HAS_DMA
+  	help
+  	  This selects the BCM2835 SDHOST MMC controller. If you have
+--- 850,856 ----
+  
+  config MMC_BCM2835
+  	tristate "Broadcom BCM2835 SDHOST MMC Controller support"
+! 	depends on ARCH_BCM2835 || COMPILE_TEST || ARCH_VERSATILE
+  	depends on HAS_DMA
+  	help
+  	  This selects the BCM2835 SDHOST MMC controller. If you have
