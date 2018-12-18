@@ -31,6 +31,14 @@ EXTRAVERSION =
 NAME = "People's Front"
 ```
 
+## カーネルへのパッチ
+
+```
+# patch --dry-run -p1 < linux4.19.10.diff
+# patch -p1 < linux4.19.10.diff
+```
+
+
 ## カーネルコンフィグレーション
 
 下記コマンドでデフォルトの.configを作ります。ここでbisonとflexが必要となります。
